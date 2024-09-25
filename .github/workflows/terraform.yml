@@ -39,7 +39,19 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan -input=false
+      env:
+        ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}}
+        ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+        ARM_USE_OIDC: true
+
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+      env:
+        ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}}
+        ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+        ARM_USE_OIDC: true
+
