@@ -54,3 +54,27 @@ resource "azurerm_storage_container" "blob" {
   storage_account_name  = azurerm_storage_account.random.name
   container_access_type = "private"
 }
+
+module "backend" {
+  source = "./modules/statebackend"
+
+  name = "tfeon"
+}
+
+module "anotherbackend" {
+  source = "./modules/statebackend"
+
+  name = "tfeon"
+}
+
+output "storage_account_name" {
+  value = module.backend.storage_account_name
+}
+
+output "resource_group_name" {
+  value = module.backend.resource_group_name
+}
+
+output "container_name" {
+  value = module.backend.container_name
+}
