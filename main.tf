@@ -39,6 +39,13 @@ resource "azurerm_resource_group" "sample" {
   tags = local.tag_map
 }
 
+resource "azurerm_resource_group" "sample2" {
+  name     = "sample2-rg"
+  location = var.location
+
+  tags = local.tag_map
+}
+
 resource "azurerm_storage_account" "random" {
   name                     = "ranstoeauntclwaltke"
   resource_group_name      = azurerm_resource_group.sample.name
