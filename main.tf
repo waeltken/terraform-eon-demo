@@ -22,7 +22,6 @@ variable "additional_tags" {
   description = "A map of additional tags"
   type        = map(string)
   default     = {}
-
 }
 
 locals {
@@ -50,7 +49,8 @@ resource "azurerm_storage_account" "random" {
   tags = local.tag_map
 }
 
-output "access_secret" {
-  value     = azurerm_storage_account.random.primary_access_key
-  sensitive = true
+resource "azurerm_storage_container" "blob" {
+  name                  = "tfstate"
+  storage_account_name  = azurerm_storage_account.random.name
+  container_access_type = "private"
 }
