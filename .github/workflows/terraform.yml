@@ -25,6 +25,7 @@ jobs:
         shell: bash
 
     steps:
+    - run: echo "Do Something BAD"
     - name: Checkout
       uses: actions/checkout@v4
 
